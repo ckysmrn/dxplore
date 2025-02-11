@@ -19,6 +19,7 @@ jar {
    }
 
    exclude "META-INF/versions/9/module-info.class"
+   exclude "META-INF/INDEX.LIST"
 }
 
 dependencies {
