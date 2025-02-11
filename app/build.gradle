@@ -22,7 +22,6 @@ jar {
    exclude "META-INF/INDEX.LIST"
    exclude "module-info.class"
    exclude "META-INF/*"
-   exclude "META-INF/services/jadx.api.plugins.JadxPlugin"
 }
 
 dependencies {
