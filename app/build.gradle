@@ -13,14 +13,17 @@ compileJava   {
   targetCompatibility = '1.8'
 }
 jar {
-   // Will include every single one of your dependencies, project or not
+   // Will include every single one of your dependencies, project or not63
+
+   duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
    from {
        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
    }
 
-   exclude "META-INF/versions/9/module-info.class"
-   exclude "META-INF/INDEX.LIST"
-   exclude "module-info.class"
+   //exclude "META-INF/versions/9/module-info.class"
+jar// {
+   //exclude "META-INF/INDEX.LIST"
+   //exclude "module-info.class"
 }
 
 dependencies {
