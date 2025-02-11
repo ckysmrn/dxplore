@@ -7,6 +7,11 @@ repositories {
    mavenCentral()
 }
 
+compileJava   {
+  sourceCompatibility = '1.8'
+  targetCompatibility = '1.8'
+}
+
 dependencies {
    implementation "io.github.skylot:jadx-core:1.4.7"
    implementation "io.github.skylot:jadx-dex-input:1.4.7"
