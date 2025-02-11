@@ -11,6 +11,12 @@ compileJava   {
   sourceCompatibility = '1.8'
   targetCompatibility = '1.8'
 }
+jar {
+   // Will include every single one of your dependencies, project or not
+   from {
+       configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+   }
+}
 
 dependencies {
    implementation "io.github.skylot:jadx-core:1.4.7"
