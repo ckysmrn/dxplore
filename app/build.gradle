@@ -1,0 +1,14 @@
+
+plugins {
+   id "java"
+}
+
+repositories {
+   mavenCentral()
+}
+
+dependencies {
+   implementation "io.github.skylot:jadx-core:1.5.1"
+   implementation "io.github.skylot:jadx-dex-input:1.5.1"
+   implementation "io.github.skylot:jadx-plugins-api:1.5.1"
+}
