@@ -1,3 +1,4 @@
-tmp/*
-app/build/*
-
+tmp/
+build/
+app/build/
+.gradle/
