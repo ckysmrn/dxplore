@@ -14,22 +14,51 @@ compileJava   {
 }
 jar {
    // Will include every single one of your dependencies, project or not63
-
+   manifest {
+      attributes("Main-Class": "amsitlab.dxplore.Main")
+   }
    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
    from {
        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
    }
-
-   //exclude "META-INF/versions/9/module-info.class"
-jar// {
+   exclude "classes.jar"
+   exclude "META-INF/versions/9/module-info.class"
    //exclude "META-INF/INDEX.LIST"
    //exclude "module-info.class"
 }
 
 dependencies {
-   implementation 'ch.qos.logback:logback-classic:1.5.16'
+   //implementation 'ch.qos.logback:logback-classic:1.5.16'
+   implementation fileTree(dir: 'lib', include: ['*.jar'])
+   implementation "com.github.tony19:logback-android:3.0.0"
    implementation "io.github.skylot:jadx-core:1.4.7"
    implementation "io.github.skylot:jadx-dex-input:1.4.7"
    implementation "io.github.skylot:jadx-smali-input:1.4.7"
    implementation "io.github.skylot:jadx-plugins-api:1.4.7"
+}
+
+
+task fatJar(type: Jar) {
+   manifest.from jar.manifest
+   //duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+   //from configurations.runtimeClasspath.collect {
+   //   it.isDirectory() ? it : myZip(it)
+   //} 
+   //exclude "META-INF/versions/9/module-info.class"
+   with jar
+}
+
+def myList = [
+   'ETA-INF/versions/9/module-info.class'
+]
+def myZip(File file) {
+   println file.name
+   //if (file.toString() !in myList) {
+   //   zipTree(file)
+   //}
+   zipTree(file)
+}
+
+artifacts {
+   archives fatJar
 }
